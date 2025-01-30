@@ -9,6 +9,7 @@ WORKDIR /app
 COPY . .
 RUN npm install && npm run build
 RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
+# RUN mkdir -p /app/.next && chown -R node:node /app/.next
 
 FROM base as production
 WORKDIR /app
