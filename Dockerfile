@@ -23,6 +23,8 @@ RUN npm install && npm run build
 RUN ls -la /app && ls -la /app/.next || echo ".next directory missing!"
 
 # Fix permissions
+RUN chown -R `whoami` ~/.npm
+RUN chown -R `whoami` /usr/local/lib/node_modules
 RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 
 # Production Stage
