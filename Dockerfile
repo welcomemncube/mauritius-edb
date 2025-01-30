@@ -8,6 +8,7 @@ FROM base as builder
 WORKDIR /app
 COPY . .
 RUN npm install && npm run build
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 
 FROM base as production
 WORKDIR /app
