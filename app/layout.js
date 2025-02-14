@@ -23,10 +23,6 @@ export default function HeaderLayout({ children }) {
     serviceInstanceID: "47799454-7e62-4abf-81b9-ca851cee5639", // The ID of your service instance.
     onLoad: async (instance) => { 
       await instance.render(); 
-      instance.updateHomeScreenConfig({
-              is_on: true,
-              greeting: 'Welcome ${userName ? userName : ''} how may i help you today!'}
-      )
     }
   };
   setTimeout(function(){
