@@ -11,6 +11,9 @@
   "dependencies": {
     "@carbon/icons-react": "^11.53.0",
     "@carbon/react": "^1.74.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.4",
     "fs": "^0.0.1-security",
     "next": "14.2.4",
     "react": "^18",

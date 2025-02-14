@@ -229,3 +229,47 @@ align-items: flex-end;
     margin-top: 2rem;
     margin-left: 7rem;
 }
+
+.profile {
+    width: 19.5625rem;
+    height: 38.5rem;
+    flex-shrink: 0;
+    background: #F4F5FA;
+    box-shadow: 0px -4px 35px 4px rgba(15, 98, 254, 0.16);
+}
+
+.profile-name {
+    color: #000;
+    text-align: center;
+    font-size: 1.50rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.25rem; /* 128.571% */
+}
+
+.profile-email {
+    color: #000;
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.75rem; /* 128.571% */
+}
+
+.line {
+    width: 19.5625rem;
+    height: 0.01563rem;
+    background:  #fffdfd;
+    margin-top: 35px;
+}
+
+.number {
+    background-color: #0F62FE;
+    color: #ffffff;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: 400;
+    font-size: small;
+}
