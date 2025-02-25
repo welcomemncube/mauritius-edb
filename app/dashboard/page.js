@@ -1,5 +1,5 @@
 "use client";
-import { Notification, Ticket } from "@carbon/icons-react";
+import { Logout, Notification, Ticket } from "@carbon/icons-react";
 import {
   Button,
   TableHeader,
@@ -11,6 +11,9 @@ import {
   TableCell,
   TableContainer,
   Pagination,
+  TableToolbar,
+  TableToolbarContent,
+  TableToolbarSearch,
 } from "@carbon/react";
 import Image from "next/image";
 
@@ -172,16 +175,18 @@ export default function Dashboard() {
         <Button
           size="sm"
           style={{
-            marginLeft: "6.5rem",
-            paddingRight: "12px",
+            marginLeft: "6rem",
             marginTop: "1.81rem",
           }}
+          kind="tertiary"
+          renderIcon={
+            Logout
+          }
         >
           Logout
         </Button>
       </div>
       <div style={{ marginLeft: "3rem", marginTop: "3rem" }}>
-        <TableContainer title="My Permit Applications">
           <DataTable rows={rows} headers={headers}>
             {({
               rows,
@@ -190,11 +195,12 @@ export default function Dashboard() {
               getHeaderProps,
               getRowProps,
             }) => (
+              <TableContainer title="My Permit Applications">
               <Table {...getTableProps()}>
                 <TableHead>
                   <TableRow>
                     {headers.map((header) => (
-                      <TableHeader {...getHeaderProps({ header })}>
+                      <TableHeader key={header} {...getHeaderProps({ header })}>
                         {header.header}
                       </TableHeader>
                     ))}
@@ -202,7 +208,7 @@ export default function Dashboard() {
                 </TableHead>
                 <TableBody>
                   {rows.map((row) => (
-                    <TableRow {...getRowProps({ row })}>
+                    <TableRow key={row} {...getRowProps({ row })}>
                       {row.cells.map((cell) => (
                         <TableCell key={cell.id}>{cell.value}</TableCell>
                       ))}
@@ -210,6 +216,7 @@ export default function Dashboard() {
                   ))}
                 </TableBody>
               </Table>
+            </TableContainer>
             )}
           </DataTable>
           <Pagination
@@ -223,7 +230,6 @@ export default function Dashboard() {
             pageSizes={[10, 20, 30, 40, 50]}
             totalItems={100}
           />
-        </TableContainer>
       </div>
     </div>
   );
