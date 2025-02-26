@@ -20,10 +20,6 @@ import Image from "next/image";
 export default function Dashboard() {
   const headers = [
     {
-      header: "Permit ID",
-      key: "permit_id",
-    },
-    {
       header: "Permit Name",
       key: "permit_name",
     },
@@ -32,16 +28,12 @@ export default function Dashboard() {
       key: "permit_owner",
     },
     {
-      header: "Status",
-      key: "status",
+      header: "Progress",
+      key: "progress",
     },
     {
       header: "Collection Date",
       key: "collection_date",
-    },
-    {
-      header: "Reasoning",
-      key: "reasoning",
     },
     {
       header: "Action",
@@ -52,12 +44,10 @@ export default function Dashboard() {
   const rows = [
     {
       id: "1",
-      permit_id: "08737676",
       permit_name: "Permit A",
       permit_owner: "John Doe",
-      status: "Active",
+      progress: "Active",
       collection_date: "2025/02/20",
-      reasoning: "Still processing",
       action: (
         <Button size="sm" style={{ paddingRight: "10px" }}>
           View Application
@@ -66,12 +56,10 @@ export default function Dashboard() {
     },
     {
       id: "2",
-      permit_id: "98928113",
       permit_name: "Permit C",
       permit_owner: "Jane Smith",
-      status: "Collected",
+      progress: "Collected",
       collection_date: "2025/02/01",
-      reasoning: "done",
       action: (
         <Button size="sm" style={{ paddingRight: "10px" }}>
           View Application
@@ -80,12 +68,10 @@ export default function Dashboard() {
     },
     {
       id: "3",
-      permit_id: "99898276",
       permit_name: "Permit D",
       permit_owner: "Michale Dudu",
-      status: "Inactive",
+      progress: "Inactive",
       collection_date: "N/A",
-      reasoning: "Incomplete documents",
       action: (
         <Button size="sm" style={{ paddingRight: "10px" }}>
           View Application
@@ -97,9 +83,8 @@ export default function Dashboard() {
       permit_id: "Content",
       permit_name: "Content",
       permit_owner: "Content",
-      status: "Content",
+      progress: "Content",
       collection_date: "Content",
-      reasoning: "Content",
       action: (
         <Button size="sm" style={{ paddingRight: "10px" }}>
           View Application
@@ -108,12 +93,10 @@ export default function Dashboard() {
     },
     {
       id: "5",
-      permit_id: "Content",
       permit_name: "Content",
       permit_owner: "Content",
-      status: "Content",
+      progress: "Content",
       collection_date: "Content",
-      reasoning: "Content",
       action: (
         <Button size="sm" style={{ paddingRight: "10px" }}>
           View Application

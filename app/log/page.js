@@ -1,5 +1,5 @@
 'use client'
-import { Form, TextArea,Button } from "@carbon/react";
+import { Form, TextArea,Button, TextInput } from "@carbon/react";
 import { Stack } from "@carbon/react";
 
 export default function LogIssues() {
@@ -9,12 +9,13 @@ export default function LogIssues() {
             <div style={{display: 'flex', justifyContent: 'center',margin: '3rem'}}>
             <Form style={{width: '700px'}}>
                 <Stack gap={7}>
+                    <TextInput type="text" placeholder="Enter your subject" labelText="Subject" />
                     <TextArea 
                         labelText="Issue Description"  
-                        placeholder="Tell me about the issue you are" 
+                        placeholder="Tell me about the issue you are facing" 
                         id="issue" 
                         type="text"
-
+                        width={700}
                     />
                     <Button style={{marginLeft: '15rem'}}>Submit Ticket</Button>
                 </Stack>

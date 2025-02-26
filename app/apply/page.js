@@ -1,14 +1,45 @@
 "use client";
-import { CloudUpload } from "@carbon/icons-react";
+import { useState } from "react";
+import { CloudUpload, Json } from "@carbon/icons-react";
 import {
   ProgressIndicator,
   ProgressStep,
   FormItem,
   FileUploaderDropContainer,
+  FileUploader,
   Button,
 } from "@carbon/react";
 
 export default function ApplyPermit() {
+  const [file, setFile] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState("");
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleSubmit = async () => {
+
+    const formData = new FormData();
+    formData.append('graphql',JSON.stringify('{"query": "mutation ($contvar:String) {\ndoc1: createDocument(repositoryIdentifier:\\"CONTENT\\" fileInFolderIdentifier: \\"/EDB Upload Docs\\" classIdentifier: \\"Document\\" documentProperties: {name:\\"test1.pdf\\" content:$contvar } checkinAction: {} ) { id name creator } } ", "variables":{"contvar":null}} }'))
+    formData.append('contvar', file)
+
+    const request = await fetch('https://cpd-cp4ba-starter.apps.67ab21b0ced9cf7d48cd08f4.ap1.techzone.ibm.com/content-services-graphql/graphql',{
+      method: 'POST',
+      headers: {
+        'ECM-CS-XSRF-Token': 'bcf8cb05-02be-4cfa-9281-271f9bde1694',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',    
+        'Authorization': 'Basic Y3A0YWRtaW46a3ZuOU01d0ZxT0NjTHNtNmJZM0E=',
+        'Cookie': 'FileNetLtpaToken=icUrddLF6Ic/VXDd24AItV+xpptM3t8Smbv5BZvmL04ermcEKWkzFrLDG6zFKfY4Eoef7JdoaYU/Qsov+c6JQCs74FeM+QrKYYRlu8Hyj4/J1+BGaLSLoXKQ4uEW3Fz+MsSAuE4a8DRyUi0WqQvjgmqVp/v4s0G8oQSXvjo8ZKSzI24C9gKNygvm1oecoW+2xvG4qn15a/97GtTjqVy2xQ6QnFxw70DjcuM/FAICkiEIN7oayLGGjVrdhtHBQsIaRcej0QRW8ohu2jfkhgi6h7GohuT38wid0pBvVS8c9twGxEiYsShQ4SOaqMxSLYb4O8tR2185GC/lkNSD315YR+k5PPZZgFuktYdmsBtCqG/WxOYzNv0krxrDGgafsODk; e455c3d95767478ce576287afa1c54a7=45957175098019799b037d4985e1a801'
+      },
+      body: formData
+    })
+
+    console.log(request)
+  }
+
   return (
     <>
       <h3
@@ -30,30 +61,44 @@ export default function ApplyPermit() {
           <ProgressStep label="Submit Form" />
         </ProgressIndicator>
       </div>
-        <div style={{ marginTop: "2rem" }}>
-        <h5 style={{ textAlign: "center", fontWeight: "400" }}>
-          Upload Required Documents
-        </h5>
-        </div>
-        <div style={{display: 'flex', justifyContent: 'center', textAlign: 'center',marginTop: '2rem',marginBottom: '5rem'}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          textAlign: "center",
+          marginTop: "2rem",
+          marginBottom: "5rem",
+        }}
+      >
         <div>
-          <p className="cds--file--label" style={{display: 'flex', alignItems: 'flex-start'}}>Upload files</p>
-          <p className="cds--label-description">
-            Max file size is 10mb. Supported file types are .pdf .jpg and .png.
-          </p>
-          <FileUploaderDropContainer
-            accept={["image/jpeg", "image/png","application/pdf"]}
-            innerRef={{
-              current: "[Circular]",
-            }}
-            labelText="Drag and drop files here or click to upload"
-            multiple
-            name=""
-            onAddFiles={function noRefCheck() {}}
-            onChange={function noRefCheck() {}}
-            tabIndex={0}
-          />
-          <div className="cds--file-container cds--file-container--drop" />
+          <div className="cds--file__container">
+            <FileUploader
+              accept={[".jpg", ".png", ".pdf"]}
+              buttonKind="primary"
+              buttonLabel="Add file"
+              filenameStatus="edit"
+              iconDescription="Delete file"
+              labelDescription="Max file size is 10mb. Supported file types are .pdf .jpg and .png."
+              labelTitle="Upload files"
+              name="doc"
+              onChange={handleFileChange}
+              onClick={() => {}}
+              onDelete={ () => setFile(null)}
+              size="md"
+            />
+            {
+              file ?  <Button 
+                  size="sm" 
+                  renderIcon={CloudUpload} 
+                  style={{marginTop: '3rem'}}
+                  onClick={handleSubmit}
+                >
+                    Upload
+                </Button> : <></>
+
+            }
+           
+          </div>
         </div>
       </div>
     </>
